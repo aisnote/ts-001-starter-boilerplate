@@ -1,5 +1,10 @@
 import * as React from "react"
 
-export const HelloComponent = () => {
-    return <h2>Hello HelloComponent!</h2>
-};
+interface Props {
+    userName: string;
+}
+
+export const HelloComponent = (props: Props) => (
+    <h2>Hello user: { props.userName} !</h2>
+)
+
