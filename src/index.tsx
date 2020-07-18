@@ -1,11 +1,6 @@
-import * as React from 'react'
-import * as ReactCom from 'react-dom'
-import { App } from './app'
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-// import { HelloComponent } from './hello';
+import { App } from "./app";
 
-ReactCom.render(
-    // <HelloComponent userName="Elliot"/>,
-    <App />,
-    document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById("root"));
