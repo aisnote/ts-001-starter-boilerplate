@@ -1,6 +1,10 @@
 import * as React from "react";
-import { HelloComponent } from "./hello"
-import { NameEditComponent } from "./nameEdit";
+// import { HelloComponent } from "./hello"
+// import { NameEditComponent } from "./components/nameEdit";
+
+import { HelloComponent, NameEditComponent, ColorBrowser, ColorPicker } from './components';
+
+import {Color} from './model/color';
 
 export const App = () => {
     const [name, setName] = React.useState('defaultUserName');
@@ -13,6 +17,8 @@ export const App = () => {
         }, 500);
     }
 
+    const [color, setColor] = React.useState<Color>({red: 20, green: 40, blue: 180});
+
     React.useEffect(() => {
         loadUsername();
     }, []);
@@ -23,6 +29,8 @@ export const App = () => {
 
     return (
         <>
+            <ColorBrowser color = {color} />
+            <ColorPicker color={color} onColorUpdated={setColor}/>
             <HelloComponent userName={name} />
             <NameEditComponent
                 initialUserName={name}
