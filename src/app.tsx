@@ -2,7 +2,10 @@ import * as React from "react";
 // import { HelloComponent } from "./hello"
 // import { NameEditComponent } from "./components/nameEdit";
 
-import { HelloComponent, NameEditComponent, ColorBrowser, ColorPicker, SiderbarComponent } from './components';
+import {
+    HelloComponent, NameEditComponent, ColorBrowser, ColorPicker, SiderbarComponent
+    , MemberTableComponent
+} from './components';
 
 import {Color} from './model/color';
 
@@ -39,6 +42,7 @@ export const App = () => {
                     <li><a href="https://www.imdb.com/title/tt0062622/">2001: a space odyssey</a></li>
                 </ul>
             </SiderbarComponent>
+            <MemberTableComponent/>
             <ColorBrowser color = {color} />
             <ColorPicker color={color} onColorUpdated={setColor}/>
             <HelloComponent userName={name} />
