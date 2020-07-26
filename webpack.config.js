@@ -2,6 +2,7 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var webpack = require("webpack");
 var path = require("path");
+
 const { basename } = require("path");
 
 var basePath = __dirname;
@@ -9,7 +10,7 @@ var basePath = __dirname;
 module.exports = {
     context: path.join(basePath, "src"),
     resolve: {
-        extensions: [".js", ".ts", ".tsx"]
+        extensions: [".js", ".ts", ".tsx", '.css']
     },
     entry: ["@babel/polyfill", "./index.tsx"],
     output: {
@@ -37,8 +38,28 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                include: /node_modules/,
                 use: [MiniCssExtractPlugin.loader, "css-loader"]
             },
+
+            // user CSS modules for custom sytlesheets
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                             modules: {
+                                localIdentName: '[name]__[local]__[hash:base64:5]',
+                                // camelCase: true,
+                            }
+                        }
+                    }
+                ]
+            },
+
             {
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: "file-loader",

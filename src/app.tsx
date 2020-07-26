@@ -2,7 +2,7 @@ import * as React from "react";
 // import { HelloComponent } from "./hello"
 // import { NameEditComponent } from "./components/nameEdit";
 
-import { HelloComponent, NameEditComponent, ColorBrowser, ColorPicker } from './components';
+import { HelloComponent, NameEditComponent, ColorBrowser, ColorPicker, SiderbarComponent } from './components';
 
 import {Color} from './model/color';
 
@@ -27,8 +27,18 @@ export const App = () => {
         setName(editingName);
     }
 
+    const[isvisible, setVisible] = React.useState(false);
+
     return (
         <>
+            <SiderbarComponent isVisible={isvisible}>
+                <h1>Cool Scfi movies</h1>
+                <ul>
+                    <li><a href="https://www.imdb.com/title/tt0816692/">Interstellar</a></li>
+                    <li><a href="https://www.imdb.com/title/tt0083658/">Blade Runner</a></li>
+                    <li><a href="https://www.imdb.com/title/tt0062622/">2001: a space odyssey</a></li>
+                </ul>
+            </SiderbarComponent>
             <ColorBrowser color = {color} />
             <ColorPicker color={color} onColorUpdated={setColor}/>
             <HelloComponent userName={name} />
@@ -39,6 +49,13 @@ export const App = () => {
                 onEditingNameUpdated={setEditingName}
                 disabled={editingName === '' || editingName === name}
             />
+
+            <div style = {{float: 'right'}}>
+                <button
+                    onClick={() => setVisible(!isvisible)}>
+                    Toggle_Sidebar
+                    </button>
+            </div>
         </>
     );
 }
